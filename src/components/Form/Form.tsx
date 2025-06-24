@@ -4,7 +4,11 @@ import styles from './Form.module.css'
 import type { SearchType } from '../../types'
 import Alert from '../Alert/Alert'
 
-export default function Form() {
+type FormProps = {
+  fetchWeather: () => void
+}
+
+export default function Form({ fetchWeather }: FormProps) {
   const [search, setSearch] = useState<SearchType>({
     city: '',
     country: '',
@@ -23,6 +27,8 @@ export default function Form() {
       ...search,
       [name]: value,
     })
+
+    fetchWeather()
   }
 
   const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
