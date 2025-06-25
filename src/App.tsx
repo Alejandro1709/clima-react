@@ -1,10 +1,12 @@
 import styles from './App.module.css'
+import Alert from './components/Alert/Alert'
 import Form from './components/Form/Form'
 import WeatherDetail from './components/WeatherDetail/WeatherDetail'
 import useWeather from './hooks/useWeather'
 
 function App() {
-  const { weather, isLoading, fetchWeather, hasWeatherData } = useWeather()
+  const { weather, isLoading, notFound, fetchWeather, hasWeatherData } =
+    useWeather()
 
   return (
     <>
@@ -15,6 +17,7 @@ function App() {
 
         {isLoading ? <p>Loading...</p> : null}
         {hasWeatherData && <WeatherDetail weather={weather} />}
+        {notFound && <Alert>Ciudad No Encontrada</Alert>}
       </div>
     </>
   )
